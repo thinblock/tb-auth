@@ -11,10 +11,4 @@
         },
         "sourceType": "module"
     },
-    "rules": {
-        "prettier/prettier": "error"
-    },
-    "plugins": [
-        "prettier"
-    ]
 }
