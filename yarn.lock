@@ -222,6 +222,12 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+boom@^4.2.0:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/boom/-/boom-4.3.1.tgz#4f8a3005cb4a7e3889f749030fd25b96e01d2e31"
+  dependencies:
+    hoek "4.x.x"
+
 boxen@1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-1.2.2.tgz#3f1d4032c30ffea9d4b02c322eaf2ea741dcbce5"
@@ -1060,6 +1066,10 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
+hoek@4.x.x:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
+
 hosted-git-info@^2.1.4:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.6.1.tgz#6e4cee78b01bb849dcf93527708c69fdbee410df"
@@ -1496,6 +1506,12 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
+micro-boom@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/micro-boom/-/micro-boom-1.2.0.tgz#7850cf7afd42c1ce0a50b04dbffd60d071281b3f"
+  dependencies:
+    boom "^4.2.0"
+
 micro-dev@^1.2.3:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/micro-dev/-/micro-dev-1.4.0.tgz#1f252b459535dba2161bed8f608f89be2a4dd6bc"
@@ -1513,6 +1529,10 @@ micro-dev@^1.2.3:
     pkg-up "2.0.0"
     pretty-error "2.1.1"
     string-length "2.0.0"
+
+micro-joi@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/micro-joi/-/micro-joi-3.1.0.tgz#c46e171026cf1fb53de6ab49a92d6364080fbea1"
 
 micro@9.0.1:
   version "9.0.1"
