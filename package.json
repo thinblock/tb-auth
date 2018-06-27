@@ -1,0 +1,24 @@
+{
+  "name": "tb-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro",
+    "dev": "micro-dev"
+  },
+  "author": "Hamza Baig",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "eslint": "^3.14.1",
+    "jsonwebtoken": "^7.2.1",
+    "micro": "^6.2.1",
+    "microrouter": "^3.1.3",
+    "mongoose": "^5.1.7"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^2.6.0",
+    "micro-dev": "^1.2.3"
+  }
+}
