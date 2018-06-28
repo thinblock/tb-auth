@@ -23,6 +23,10 @@ describe(`the endpoint facing the web`, function() {
     // done();
   });
 
+  afterEach(async () => {
+    await config.disConnectDB();
+  })
+
   describe('GET /', () => {
 
     it(`returns status code 200`, async () => {

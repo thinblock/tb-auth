@@ -6,7 +6,7 @@
   "scripts": {
     "start": "micro",
     "dev": "micro-dev --ignore ./src/models",
-    "test": "export NODE_ENV=test && node ./node_modules/mocha/bin/mocha './src/**/*.test.js' --reporter list --require async-to-gen/register"
+    "test": "export NODE_ENV=test && node ./node_modules/mocha/bin/mocha './src/**/*.test.js' --reporter list --exit --require async-to-gen/register"
   },
   "author": "Hamza Baig",
   "license": "ISC",

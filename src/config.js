@@ -19,5 +19,8 @@ module.exports = {
     }
     console.log('after');
   },
+  disConnectDB: async () => {
+    await mongoose.disconnect();
+  },
   secret: process.env.TB_JWT_SECRET
 }
