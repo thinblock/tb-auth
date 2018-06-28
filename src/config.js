@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 module.exports = {
-  initDB: () => {
+  initDB: async (next) => {
     const options = {
       autoIndex: false,
       reconnectTries: Number.MAX_VALUE,
@@ -10,12 +10,14 @@ module.exports = {
       poolSize: 10,
       bufferMaxEntries: 0
     };
-  
-    mongoose.connect(process.env.TB_AUTH_DB_STRING, options).then(() => {
+    try {
+      await mongoose.connect(process.env.TB_AUTH_DB_STRING, options);
+      next && next();
       console.log('DB Connected!');
-    })
-    .catch((e) => {
+    } catch(e) {
       console.log('Error while connecting to DB.', e.message);
-    });
-  }
+    }
+    console.log('after');
+  },
+  secret: process.env.TB_JWT_SECRET
 }
