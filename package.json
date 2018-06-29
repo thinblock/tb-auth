@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.11.2"
+  },
   "scripts": {
     "start": "micro",
     "dev": "micro-dev --ignore ./src/models",
