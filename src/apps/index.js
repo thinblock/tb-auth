@@ -1,35 +1,38 @@
 const {json} = require('micro');
+const {hash} = require('bcrypt');
 const {handleErrors, createError} = require('micro-boom');
 const hat = require('hat');
 const App = require('../models/app');
 
 const getApps = async (req, res) => {
-  const user = req.user_id;
+  const user = req.decoded.user_id;
   try {
     const apps = (await App.find({user})).map(app => {
-      const {secret, ...rest} = app;
-      return rest;
+      const {secret_hash, user, ...rest} = app.toObject();
+      return {...rest, client_id: rest._id};
     });
     return apps;
   } catch(e) {
-    return createError(500);
+    throw createError(500, e);
   }
 };
 
 const createApp = async (req, res) => {
-  const user = req.user_id;
+  const userId = req.decoded.user_id;
   try {
     const {name} = await json(req);
     const Rack = hat.rack(); // Create client_secret
-    const app = new App({name, secret: Rack(), user});
+    const secret = Rack();
+    const app = new App({name, secret_hash: await hash(secret, 12), user: userId});
     await app.save();
-    return app;
-  } catch(e) { 
-    return createError(500);
+    const {secret_hash, user, updated_at, ...rest} = app.toObject();
+    return {...rest, client_id: rest._id, client_secret: secret};
+  } catch(e) {
+    throw createError(500, e);
   } 
 };
 
 module.exports = {
-  getApps: handleErrors(createApp, true),
-  createApp: handleErrors(createApp, true)
+  getApps,
+  createApp
 }
