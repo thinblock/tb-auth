@@ -3,6 +3,7 @@ const { router, get, post } = require('microrouter')
 
 const config = require('./src/config');
 const corsDecorator = require ('./src/decorators/cors');
+const authDecorator = require ('./src/decorators/auth');
 const auth = require('./src/authentication');
 const apps = require('./src/apps');
 
@@ -16,7 +17,7 @@ const notfound = (req, res) => send(res, 404, 'Not found route')
 module.exports = router(
   post('/auth/login', corsDecorator(auth.login)),
   post('/auth/signup', corsDecorator(auth.signup)),
-  get('/oauth2/apps', corsDecorator(apps.getApps)),
-  post('/oauth2/apps', corsDecorator(apps.getApps)),
+  get('/apps', corsDecorator(authDecorator(apps.getApps))),
+  post('/apps', corsDecorator(authDecorator(apps.createApp))),
   get('/*', notfound)
 );

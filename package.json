@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.11.2"
+  },
   "scripts": {
-    "start": "micro",
+    "start": "node server.js",
     "dev": "micro-dev --ignore ./src/models",
     "test": "export NODE_ENV=test && node ./node_modules/mocha/bin/mocha './src/**/*.test.js' --reporter list --exit --require async-to-gen/register"
   },
@@ -12,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.2",
+    "hat": "^0.0.3",
     "joi": "12.0.0",
     "jsonwebtoken": "^7.2.1",
     "micro": "^6.2.1",

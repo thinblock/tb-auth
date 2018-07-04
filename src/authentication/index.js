@@ -21,7 +21,7 @@ const signup = async (req, res) => {
     await userModel.save();
     return {success: true, message: 'User created successfully'};
   } catch (e) {
-    throw createError(500, e,);
+    throw createError(500, e);
   }
 };
 

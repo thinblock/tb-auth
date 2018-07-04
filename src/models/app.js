@@ -3,12 +3,11 @@ const Schema = mongoose.Schema;
 
 const AppSchema = new Schema({
   name: {type: String, required: true},
-  client_id: {type: String, unique: true, required: true},
-  client_secret: {type: String, required: true},
-  scope: {type: String, required: true},
+  secret_hash: {type: String, required: true},
+  scope: {type: String, default: ''},
   user: {type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true},
   created_at: {type: Date, default: Date.now},
   updated_at: {type: Date, default: Date.now}
 }, {collection: 'apps'});
 
-module.exports = mongoose.model('apps', UserSchema);
+module.exports = mongoose.model('apps', AppSchema);
