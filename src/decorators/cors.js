@@ -4,16 +4,19 @@ module.exports = fn => (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader(
     'Access-Control-Allow-Methods',
-    'GET,HEAD,OPTIONS,POST,PUT,DELETE'
+    'GET,HEAD,OPTIONS,POST,PUT,DELETE',
   );
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Authorization, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+    'Authorization, Access-Control-Allow-Headers, '
+    + 'Access-Control-Allow-Methods, Origin,Accept, '
+    + 'X-Requested-With, Content-Type, Access-Control-Request-Method, '
+    + 'Access-Control-Request-Headers',
   );
 
-  if (req.method == 'OPTIONS') {
+  if (req.method === 'OPTIONS') {
     return '';
   }
 
   return fn(req, res);
-}
+};
