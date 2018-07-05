@@ -19,5 +19,6 @@ module.exports = router(
   post('/auth/signup', corsDecorator(auth.signup)),
   get('/apps', corsDecorator(authDecorator(apps.getApps))),
   post('/apps', corsDecorator(authDecorator(apps.createApp))),
+  post('/apps/:appId/refresh_secret', corsDecorator(authDecorator(apps.refreshSecret))),
   get('/*', notfound)
 );

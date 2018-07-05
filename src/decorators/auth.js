@@ -5,12 +5,13 @@ const {secret} = require('../config');
 
 module.exports = fn => handleErrors(async (req, res) => {
   const token = req.headers.Authorization || req.headers.authorization;
+  let decodedToken = null;
   if (!token) {
     throw createError(401, 'No Access Token was specified in the Request Headers');
   }
 
   try {
-    const decodedToken = verify(token, secret);
+    decodedToken = verify(token, secret);
     if (!decodedToken) {
       throw createError(401, 'Provided Access Token was invalid or expired');
     }
