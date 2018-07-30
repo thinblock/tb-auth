@@ -1,120 +1,339 @@
-swagger: '2.0'
+host: api.thinkblock.io
 info:
-  version: '1.0'
-  title: "Auth"
-  description: Polls is a simple API allowing consumers to view polls and vote in them.
-  license:
-    name: MIT
-    url: https://github.com/apiaryio/polls-api/blob/master/LICENSE
-host: polls.apiblueprint.org
+  title: ThinBlock's API Documentation
+  version: 0.1.0
+  description: >-
+    This documentation is a complete cookbook of ThinBlock's API. Everything is
+    pretty well documented. If you have any questions please let us know.
+swagger: '2.0'
 basePath: /
 schemes:
-- http
-consumes:
-- application/json
-produces:
-- application/json
+  - http
+  - https
+tags:
+  - name: Apps
+    description: Apps
+  - name: Authentication
+    description: Authentication
+  - name: Ethereum
+    description: >-
+      This API is about transactions. You'll need an ethereum account to access
+      this route. The account must be created from ThinBlock's API.
+  - name: OAuth2
+    description: OAuth2
 paths:
-  /questions:
-    x-summary: Questions Collection
+  /api/apps/:
     get:
-      summary: List All Questions
+      tags:
+        - Apps
+      summary: Get All Apps
+      description: Gets all created apps
+      operationId: 1532938652471_get
+      produces:
+        - application/json
+      parameters: []
       responses:
-        200:
-          description: Successful Response
+        '500':
+          description: When Server takes a nap.
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Question'
-          examples:
-            application/json:
-              - question: Favourite programming language?
-                published_at: '2015-08-05T08:40:51.620Z'
-                choices:
-                  - choice: Swift
-                    votes: 2048
-                  - choice: Python
-                    votes: 1024
-                  - choice: Objective-C
-                    votes: 512
-                  - choice: Ruby
-                    votes: 256
+            $ref: '#/definitions/Error'
     post:
-      description: >-
-        You may create your own question using this action. It takes a JSON
-        object containing a question and a collection of answers in the
-        form of choices.
-      summary: Create a New Question
+      tags:
+        - Apps
+      summary: Create An App
+      description: Creates an app.
+      operationId: 1532938652471_post
+      produces:
+        - application/json
       parameters:
         - name: body
           in: body
+          description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/QuestionRequest'
+            $ref: '#/definitions/1532938652471PostEntity'
       responses:
-        201:
-          description: ''
+        '500':
+          description: When Server takes a nap.
           schema:
-            $ref: '#/definitions/Question'
+            $ref: '#/definitions/Error'
+  /api/auth/login/:
+    post:
+      tags:
+        - Authentication
+      summary: Login User
+      description: >-
+        Returns JWT token in exchange for credentials which can be used to
+        access protected routes.
+      operationId: 1532938652476_post
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Submission Data in body
+          required: true
+          schema:
+            $ref: '#/definitions/1532938652476PostEntity'
+      responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  /api/auth/signup/:
+    post:
+      tags:
+        - Authentication
+      summary: Create User
+      description: 'Signs up user with name, email and password.'
+      operationId: 1532938652478_post
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Submission Data in body
+          required: true
+          schema:
+            $ref: '#/definitions/1532938652478PostEntity'
+      responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  /api/eth/accounts/:
+    get:
+      tags:
+        - Ethereum
+      summary: Get All Eth Accounts
+      description: >-
+        Gets all ethereum accounts created with ThinBlock. You can also retreive
+        the confirmed eth balance by making 'include_balance=true'
+      operationId: 1532938653120_get
+      produces:
+        - application/json
+      parameters:
+        - name: include_balance
+          in: query
+          description: ''
+          required: false
+          type: boolean
+          default: false
+      responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+        - Ethereum
+      summary: Create Eth Account
+      description: Creates an ethereum account and save its address in ThinBlock
+      operationId: 1532938653120_post
+      produces:
+        - application/json
+      parameters:
+        - name: key_action
+          in: query
+          description: ''
+          required: true
+          type: string
+      responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  '/api/eth/accounts/{account}/balance/':
+    get:
+      tags:
+        - Ethereum
+      summary: Get Account Balance
+      description: Gets balance of given account
+      operationId: 1532938653123_get
+      produces:
+        - application/json
+      parameters:
+        - name: account
+          in: path
+          description: account
+          required: true
+          type: string
+      responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  '/api/eth/accounts/{account}/transactions/{transaction_hash}':
+    get:
+      tags:
+        - Ethereum
+      summary: Retreive Transaction With TX Hash
+      description: This route gets the transaction info for a certain tx hash
+      operationId: 1532938653129_get
+      produces:
+        - application/json
+      parameters:
+        - name: account
+          in: path
+          description: account
+          required: true
+          type: string
+        - name: transaction_hash
+          in: path
+          description: transaction_hash
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Normal Response
+          schema:
+            $ref: '#/definitions/NormalResponse'
           examples:
             application/json:
-                question: Favourite programming language?
-                published_at: '2015-08-05T08:40:51.620Z'
-                choices:
-                  - choice: Swift
-                    votes: 0
-                  - choice: Python
-                    votes: 0
-                  - choice: Objective-C
-                    votes: 0
-                  - choice: Ruby
-                    votes: 0
-definitions:
-  Question:
-    title: Question
-    type: object
-    properties:
-      question:
-        type: string
-      published_at:
-        type: string
-      choices:
-        type: array
-        items:
-          $ref: '#/definitions/Choice'
-    required:
-      - question
-      - published_at
-      - choices
-  Choice:
-    title: Choice
-    type: object
-    properties:
-      votes:
-        type: integer
-        format: int32
-      choice:
-        type: string
-    required:
-      - votes
-      - choice
-  QuestionRequest:
-    title: Question Request
-    type: object
-    properties:
-      question:
-        type: string
-      choices:
-        type: array
-        items:
+              tx_hash: 0x38293289sads8f932893
+              status: pending
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  '/api/eth/accounts/{account}/transactions/':
+    post:
+      tags:
+        - Ethereum
+      summary: Creates Transaction
+      description: Create a Transaction in given account with private_key
+      operationId: 1532938653130_post
+      produces:
+        - application/json
+      parameters:
+        - name: account
+          in: path
+          description: account
+          required: true
           type: string
+        - name: body
+          in: body
+          description: Submission Data in body
+          required: true
+          schema:
+            $ref: '#/definitions/1532938653130PostEntity'
+      responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  /api/oauth2/token/:
+    post:
+      tags:
+        - OAuth2
+      summary: Create OAuth Token
+      description: Creates an OAuth2 token for given credentials.
+      operationId: 1532938653134_post
+      produces:
+        - application/json
+      parameters:
+        - name: client_id
+          in: query
+          description: ''
+          required: true
+          type: string
+        - name: client_secret
+          in: query
+          description: ''
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Submission Data in body
+          required: true
+          schema:
+            $ref: '#/definitions/1532938653134PostEntity'
+      responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  NormalResponse:
+    type: object
     required:
-      - question
-      - choices
-    example:
-      question: Favourite programming language?
-      choices:
-        - Swift
-        - Python
-        - Objective-C
-        - Ruby
+      - err
+      - data
+    properties:
+      err:
+        type: 'null'
+      data:
+        type: object
+  Error:
+    type: object
+    required:
+      - err
+      - data
+    properties:
+      err:
+        type: string
+      data:
+        type: 'null'
+  1532938652471PostEntity:
+    type: object
+    properties:
+      name:
+        type: string
+        description: ''
+    required:
+      - name
+  1532938652476PostEntity:
+    type: object
+    properties:
+      email:
+        type: string
+        description: ''
+      password:
+        type: string
+        description: ''
+    required:
+      - email
+      - password
+  1532938652478PostEntity:
+    type: object
+    properties:
+      name:
+        type: string
+        description: ''
+      email:
+        type: string
+        description: ''
+      password:
+        type: string
+        description: ''
+    required:
+      - name
+      - email
+      - password
+  1532938653130PostEntity:
+    type: object
+    properties:
+      to:
+        type: string
+        description: ''
+      value:
+        type: string
+        description: ''
+      gas:
+        type: string
+        description: ''
+      private_key:
+        type: string
+        description: ''
+    required:
+      - to
+      - value
+      - gas
+  1532938653134PostEntity:
+    type: object
+    properties:
+      grant_type:
+        type: string
+        description: ''
+    required:
+      - grant_type
