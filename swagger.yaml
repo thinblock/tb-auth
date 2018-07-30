@@ -28,7 +28,7 @@ paths:
         - Apps
       summary: Get All Apps
       description: Gets all created apps
-      operationId: 1532938652471_get
+      operationId: 1532938895174_get
       produces:
         - application/json
       parameters: []
@@ -42,7 +42,7 @@ paths:
         - Apps
       summary: Create An App
       description: Creates an app.
-      operationId: 1532938652471_post
+      operationId: 1532938895174_post
       produces:
         - application/json
       parameters:
@@ -51,7 +51,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532938652471PostEntity'
+            $ref: '#/definitions/1532938895174PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -65,7 +65,7 @@ paths:
       description: >-
         Returns JWT token in exchange for credentials which can be used to
         access protected routes.
-      operationId: 1532938652476_post
+      operationId: 1532938895179_post
       produces:
         - application/json
       parameters:
@@ -74,7 +74,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532938652476PostEntity'
+            $ref: '#/definitions/1532938895179PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -86,7 +86,7 @@ paths:
         - Authentication
       summary: Create User
       description: 'Signs up user with name, email and password.'
-      operationId: 1532938652478_post
+      operationId: 1532938895181_post
       produces:
         - application/json
       parameters:
@@ -95,7 +95,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532938652478PostEntity'
+            $ref: '#/definitions/1532938895181PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -109,7 +109,7 @@ paths:
       description: >-
         Gets all ethereum accounts created with ThinBlock. You can also retreive
         the confirmed eth balance by making 'include_balance=true'
-      operationId: 1532938653120_get
+      operationId: 1532938895705_get
       produces:
         - application/json
       parameters:
@@ -129,7 +129,7 @@ paths:
         - Ethereum
       summary: Create Eth Account
       description: Creates an ethereum account and save its address in ThinBlock
-      operationId: 1532938653120_post
+      operationId: 1532938895705_post
       produces:
         - application/json
       parameters:
@@ -149,7 +149,7 @@ paths:
         - Ethereum
       summary: Get Account Balance
       description: Gets balance of given account
-      operationId: 1532938653123_get
+      operationId: 1532938895708_get
       produces:
         - application/json
       parameters:
@@ -168,8 +168,8 @@ paths:
       tags:
         - Ethereum
       summary: Retreive Transaction With TX Hash
-      description: This route gets the transaction info for a certain tx hash
-      operationId: 1532938653129_get
+      description: This route gets the transaction info for given tx hash
+      operationId: 1532938895711_get
       produces:
         - application/json
       parameters:
@@ -202,7 +202,7 @@ paths:
         - Ethereum
       summary: Creates Transaction
       description: Create a Transaction in given account with private_key
-      operationId: 1532938653130_post
+      operationId: 1532938895712_post
       produces:
         - application/json
       parameters:
@@ -216,7 +216,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532938653130PostEntity'
+            $ref: '#/definitions/1532938895712PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -228,7 +228,7 @@ paths:
         - OAuth2
       summary: Create OAuth Token
       description: Creates an OAuth2 token for given credentials.
-      operationId: 1532938653134_post
+      operationId: 1532938895715_post
       produces:
         - application/json
       parameters:
@@ -247,7 +247,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532938653134PostEntity'
+            $ref: '#/definitions/1532938895715PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -274,7 +274,7 @@ definitions:
         type: string
       data:
         type: 'null'
-  1532938652471PostEntity:
+  1532938895174PostEntity:
     type: object
     properties:
       name:
@@ -282,7 +282,7 @@ definitions:
         description: ''
     required:
       - name
-  1532938652476PostEntity:
+  1532938895179PostEntity:
     type: object
     properties:
       email:
@@ -294,7 +294,7 @@ definitions:
     required:
       - email
       - password
-  1532938652478PostEntity:
+  1532938895181PostEntity:
     type: object
     properties:
       name:
@@ -310,7 +310,7 @@ definitions:
       - name
       - email
       - password
-  1532938653130PostEntity:
+  1532938895712PostEntity:
     type: object
     properties:
       to:
@@ -329,7 +329,7 @@ definitions:
       - to
       - value
       - gas
-  1532938653134PostEntity:
+  1532938895715PostEntity:
     type: object
     properties:
       grant_type:
