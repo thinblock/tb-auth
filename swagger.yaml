@@ -19,6 +19,8 @@ tags:
     description: >-
       This API is about transactions. You'll need an ethereum account to access
       this route. The account must be created from ThinBlock's API.
+  - name: Keys
+    description: Keys
   - name: OAuth2
     description: OAuth2
 paths:
@@ -28,7 +30,7 @@ paths:
         - Apps
       summary: Get All Apps
       description: Gets all created apps
-      operationId: 1532941609699_get
+      operationId: 1532951721563_get
       produces:
         - application/json
       parameters: []
@@ -42,7 +44,7 @@ paths:
         - Apps
       summary: Create An App
       description: Creates an app.
-      operationId: 1532941609699_post
+      operationId: 1532951721563_post
       produces:
         - application/json
       parameters:
@@ -51,7 +53,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532941609699PostEntity'
+            $ref: '#/definitions/1532951721563PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -65,7 +67,7 @@ paths:
       description: >-
         Returns JWT token in exchange for credentials which can be used to
         access protected routes.
-      operationId: 1532941609718_post
+      operationId: 1532951721581_post
       produces:
         - application/json
       parameters:
@@ -74,7 +76,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532941609718PostEntity'
+            $ref: '#/definitions/1532951721581PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -86,7 +88,7 @@ paths:
         - Authentication
       summary: Create User
       description: 'Signs up user with name, email and password.'
-      operationId: 1532941609720_post
+      operationId: 1532951721582_post
       produces:
         - application/json
       parameters:
@@ -95,7 +97,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532941609720PostEntity'
+            $ref: '#/definitions/1532951721582PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -109,7 +111,7 @@ paths:
       description: >-
         Gets all ethereum accounts created with ThinBlock. You can also retreive
         the confirmed eth balance by making 'include_balance=true'
-      operationId: 1532941610192_get
+      operationId: 1532951722049_get
       produces:
         - application/json
       parameters:
@@ -129,7 +131,7 @@ paths:
         - Ethereum
       summary: Create Eth Account
       description: Creates an ethereum account and save its address in ThinBlock
-      operationId: 1532941610192_post
+      operationId: 1532951722049_post
       produces:
         - application/json
       parameters:
@@ -149,7 +151,7 @@ paths:
         - Ethereum
       summary: Get Account Balance
       description: Gets balance of given account
-      operationId: 1532941610194_get
+      operationId: 1532951722052_get
       produces:
         - application/json
       parameters:
@@ -169,7 +171,7 @@ paths:
         - Ethereum
       summary: Retreive Transaction With TX Hash
       description: This route gets the transaction info for a certain tx hash
-      operationId: 1532941610197_get
+      operationId: 1532951722055_get
       produces:
         - application/json
       parameters:
@@ -202,7 +204,7 @@ paths:
         - Ethereum
       summary: Creates Transaction
       description: Create a Transaction in given account with private_key
-      operationId: 1532941610206_post
+      operationId: 1532951722055_post
       produces:
         - application/json
       parameters:
@@ -216,8 +218,76 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532941610206PostEntity'
+            $ref: '#/definitions/1532951722055PostEntity'
       responses:
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  '/api/keys/{key_id}':
+    get:
+      tags:
+        - Keys
+      summary: Gets Encrypted Key
+      description: Gets the encrypted key for the given key id.
+      operationId: 1532951722111_get
+      produces:
+        - application/json
+      parameters:
+        - name: key_id
+          in: path
+          description: key_id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Normal Response
+          schema:
+            $ref: '#/definitions/NormalResponse'
+          examples:
+            application/json:
+              id: 203
+              encrypted_key: 96A467D2Da922D7d08cB77253686c9c1cFAF723908cB77253686c9c1cFAF7239
+              user_id: '29'
+              created_at: '2018-07-30T11:34:45.141Z'
+        '404':
+          description: Normal Response
+          schema:
+            $ref: '#/definitions/NormalResponse'
+          examples:
+            application/json:
+              code: NotFoundError
+              message: Key not found for given credentials
+        '500':
+          description: When Server takes a nap.
+          schema:
+            $ref: '#/definitions/Error'
+  /api/keys/:
+    post:
+      tags:
+        - Keys
+      summary: Creates Encrypted Key
+      description: Adds the Encrypted key in ThinBlock under the given user id.
+      operationId: 1532951722111_post
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Submission Data in body
+          required: true
+          schema:
+            $ref: '#/definitions/1532951722111PostEntity'
+      responses:
+        '200':
+          description: Normal Response
+          schema:
+            $ref: '#/definitions/NormalResponse'
+          examples:
+            application/json:
+              success: true
+              message: Key saved successfully!
+              key_id: 1
         '500':
           description: When Server takes a nap.
           schema:
@@ -228,7 +298,7 @@ paths:
         - OAuth2
       summary: Create OAuth Token
       description: Creates an OAuth2 token for given credentials.
-      operationId: 1532941610210_post
+      operationId: 1532951722115_post
       produces:
         - application/json
       parameters:
@@ -247,7 +317,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1532941610210PostEntity'
+            $ref: '#/definitions/1532951722115PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -274,7 +344,7 @@ definitions:
         type: string
       data:
         type: 'null'
-  1532941609699PostEntity:
+  1532951721563PostEntity:
     type: object
     properties:
       name:
@@ -282,7 +352,7 @@ definitions:
         description: ''
     required:
       - name
-  1532941609718PostEntity:
+  1532951721581PostEntity:
     type: object
     properties:
       email:
@@ -294,7 +364,7 @@ definitions:
     required:
       - email
       - password
-  1532941609720PostEntity:
+  1532951721582PostEntity:
     type: object
     properties:
       name:
@@ -310,7 +380,7 @@ definitions:
       - name
       - email
       - password
-  1532941610206PostEntity:
+  1532951722055PostEntity:
     type: object
     properties:
       to:
@@ -329,7 +399,19 @@ definitions:
       - to
       - value
       - gas
-  1532941610210PostEntity:
+  1532951722111PostEntity:
+    type: object
+    properties:
+      encrypted_key:
+        type: string
+        description: ''
+      user_id:
+        type: string
+        description: ''
+    required:
+      - encrypted_key
+      - user_id
+  1532951722115PostEntity:
     type: object
     properties:
       grant_type:
