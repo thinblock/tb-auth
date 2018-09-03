@@ -42,7 +42,7 @@ paths:
         the ThinBlock's API. If you want to filter for your specific user. You
         can provide 'user_id' in query params to filter the log only to that
         user's activity.
-      operationId: 1535532262987_get
+      operationId: 1535975300870_get
       produces:
         - application/json
       parameters:
@@ -76,7 +76,7 @@ paths:
         - Apps
       summary: Get All Apps
       description: Gets all created apps
-      operationId: 1535532263058_get
+      operationId: 1535975300942_get
       produces:
         - application/json
       parameters: []
@@ -90,7 +90,7 @@ paths:
         - Apps
       summary: Create An App
       description: Creates an app.
-      operationId: 1535532263058_post
+      operationId: 1535975300942_post
       produces:
         - application/json
       parameters:
@@ -99,7 +99,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532263058PostEntity'
+            $ref: '#/definitions/1535975300942PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -113,7 +113,7 @@ paths:
       description: >-
         Returns JWT token in exchange for credentials which can be used to
         access protected routes.
-      operationId: 1535532263472_post
+      operationId: 1535975301397_post
       produces:
         - application/json
       parameters:
@@ -122,7 +122,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532263472PostEntity'
+            $ref: '#/definitions/1535975301397PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -136,7 +136,7 @@ paths:
       description: >-
         Sends password reset email to the given email with reset_token. Returns
         404 error if user not found.
-      operationId: 1535532263994_post
+      operationId: 1535975302081_post
       produces:
         - application/json
       parameters:
@@ -145,7 +145,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532263994PostEntity'
+            $ref: '#/definitions/1535975302081PostEntity'
       responses:
         '200':
           description: Normal Response
@@ -178,7 +178,7 @@ paths:
         if reset_token is invalid. Hitting this endpoint 5 times with invalid
         token suspends the user's account. You need to create a new reset_token
         to start over.
-      operationId: 1535532263994_put
+      operationId: 1535975302081_put
       produces:
         - application/json
       parameters:
@@ -187,7 +187,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532263994PutEntity'
+            $ref: '#/definitions/1535975302081PutEntity'
       responses:
         '200':
           description: Normal Response
@@ -217,7 +217,7 @@ paths:
         - Authentication
       summary: Create User
       description: 'Signs up user with name, email and password.'
-      operationId: 1535532263995_post
+      operationId: 1535975302082_post
       produces:
         - application/json
       parameters:
@@ -226,7 +226,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532263995PostEntity'
+            $ref: '#/definitions/1535975302082PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -240,7 +240,7 @@ paths:
       description: >-
         Returns JWT token in exchange for One Time Password which can be used to
         access protected routes.
-      operationId: 1535532263997_post
+      operationId: 1535975302084_post
       produces:
         - application/json
       parameters:
@@ -249,7 +249,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532263997PostEntity'
+            $ref: '#/definitions/1535975302084PostEntity'
       responses:
         '200':
           description: Normal Response
@@ -277,7 +277,7 @@ paths:
         - Devices
       summary: Gets All Devices
       description: Gets all devices associated with client and user_id
-      operationId: 1535532264045_get
+      operationId: 1535975302123_get
       produces:
         - application/json
       parameters:
@@ -310,7 +310,7 @@ paths:
         - Devices
       summary: Creates Device
       description: Creates Device
-      operationId: 1535532264045_post
+      operationId: 1535975302123_post
       produces:
         - application/json
       parameters:
@@ -319,7 +319,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264045PostEntity'
+            $ref: '#/definitions/1535975302123PostEntity'
       responses:
         '200':
           description: Normal Response
@@ -343,7 +343,7 @@ paths:
         - Devices
       summary: Gets Device
       description: Gets single device for given device id.
-      operationId: 1535532264045_get
+      operationId: 1535975302123_get
       produces:
         - application/json
       parameters:
@@ -387,7 +387,7 @@ paths:
         - Devices
       summary: Deletes Device
       description: Deletes single device for given device id.
-      operationId: 1535532264045_delete
+      operationId: 1535975302123_delete
       produces:
         - application/json
       parameters:
@@ -430,7 +430,7 @@ paths:
       description: >-
         Gets all ethereum accounts created with ThinBlock. You can also retreive
         the confirmed eth balance by making 'include_balance=true'
-      operationId: 1535532264470_get
+      operationId: 1535975302471_get
       produces:
         - application/json
       parameters:
@@ -450,7 +450,7 @@ paths:
         - Ethereum
       summary: Create Eth Account
       description: Creates an ethereum account and save its address in ThinBlock
-      operationId: 1535532264471_post
+      operationId: 1535975302471_post
       produces:
         - application/json
       parameters:
@@ -470,7 +470,7 @@ paths:
         - Ethereum
       summary: Get Account Balance
       description: Gets balance of given account
-      operationId: 1535532264472_get
+      operationId: 1535975302480_get
       produces:
         - application/json
       parameters:
@@ -490,7 +490,7 @@ paths:
         - Ethereum
       summary: Retreive Transaction With TX Hash
       description: This route gets the transaction info for a certain tx hash
-      operationId: 1535532264474_get
+      operationId: 1535975302483_get
       produces:
         - application/json
       parameters:
@@ -523,7 +523,7 @@ paths:
         - Ethereum
       summary: Creates Transaction
       description: Create a Transaction in given account with private_key
-      operationId: 1535532264474_post
+      operationId: 1535975302483_post
       produces:
         - application/json
       parameters:
@@ -537,7 +537,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264474PostEntity'
+            $ref: '#/definitions/1535975302483PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -549,7 +549,7 @@ paths:
         - Keys
       summary: Gets Encrypted Key
       description: Gets the encrypted key for the given key id.
-      operationId: 1535532264477_get
+      operationId: 1535975302486_get
       produces:
         - application/json
       parameters:
@@ -587,7 +587,7 @@ paths:
         - Keys
       summary: Creates Encrypted Key
       description: Adds the Encrypted key in ThinBlock under the given user id.
-      operationId: 1535532264477_post
+      operationId: 1535975302486_post
       produces:
         - application/json
       parameters:
@@ -596,7 +596,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264477PostEntity'
+            $ref: '#/definitions/1535975302486PostEntity'
       responses:
         '200':
           description: Normal Response
@@ -617,7 +617,7 @@ paths:
         - OAuth2
       summary: Create OAuth Token
       description: Creates an OAuth2 token for given credentials.
-      operationId: 1535532264480_post
+      operationId: 1535975302490_post
       produces:
         - application/json
       parameters:
@@ -636,7 +636,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264480PostEntity'
+            $ref: '#/definitions/1535975302490PostEntity'
       responses:
         '500':
           description: When Server takes a nap.
@@ -648,7 +648,7 @@ paths:
         - Users
       summary: Updates User Settings
       description: Updates User Settings
-      operationId: 1535532264482_put
+      operationId: 1535975302492_put
       produces:
         - application/json
       parameters:
@@ -657,7 +657,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264482PutEntity'
+            $ref: '#/definitions/1535975302492PutEntity'
       responses:
         '200':
           description: Normal Response
@@ -677,7 +677,7 @@ paths:
         - Wallets
       summary: Get Wallet Address
       description: Gets addresses of given wallet
-      operationId: 1535532264490_get
+      operationId: 1535975302502_get
       produces:
         - application/json
       parameters:
@@ -711,7 +711,7 @@ paths:
         - Wallets
       summary: Add Wallet Address
       description: Adds address to given wallet
-      operationId: 1535532264490_post
+      operationId: 1535975302502_post
       produces:
         - application/json
       parameters:
@@ -725,7 +725,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264490PostEntity'
+            $ref: '#/definitions/1535975302502PostEntity'
       responses:
         '200':
           description: Normal Response
@@ -750,7 +750,7 @@ paths:
         - Wallets
       summary: Delete Wallet Address
       description: Deletes address from given wallet
-      operationId: 1535532264490_delete
+      operationId: 1535975302502_delete
       produces:
         - application/json
       parameters:
@@ -783,7 +783,7 @@ paths:
         - Wallets
       summary: Get Wallet Users
       description: Gets users of given wallet
-      operationId: 1535532264492_get
+      operationId: 1535975302504_get
       produces:
         - application/json
       parameters:
@@ -816,7 +816,7 @@ paths:
         - Wallets
       summary: Add Wallet User
       description: Adds user to given wallet
-      operationId: 1535532264492_post
+      operationId: 1535975302504_post
       produces:
         - application/json
       parameters:
@@ -830,7 +830,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264492PostEntity'
+            $ref: '#/definitions/1535975302504PostEntity'
       responses:
         '200':
           description: Normal Response
@@ -854,7 +854,7 @@ paths:
         - Wallets
       summary: Delete Wallet User
       description: Deletes user from given wallet
-      operationId: 1535532264492_delete
+      operationId: 1535975302504_delete
       produces:
         - application/json
       parameters:
@@ -887,7 +887,7 @@ paths:
         - Wallets
       summary: Gets All Wallets
       description: Gets all wallets
-      operationId: 1535532264494_get
+      operationId: 1535975302506_get
       produces:
         - application/json
       parameters: []
@@ -915,7 +915,7 @@ paths:
         - Wallets
       summary: Creates Wallet
       description: Creates Wallet
-      operationId: 1535532264494_post
+      operationId: 1535975302506_post
       produces:
         - application/json
       parameters:
@@ -924,7 +924,7 @@ paths:
           description: Submission Data in body
           required: true
           schema:
-            $ref: '#/definitions/1535532264494PostEntity'
+            $ref: '#/definitions/1535975302506PostEntity'
       responses:
         '200':
           description: Normal Response
@@ -948,7 +948,7 @@ paths:
         - Wallets
       summary: Gets Wallet Addresses
       description: Gets single wallet for given wallet id.
-      operationId: 1535532264494_get
+      operationId: 1535975302506_get
       produces:
         - application/json
       parameters:
@@ -1007,7 +1007,7 @@ definitions:
         type: string
       data:
         type: 'null'
-  1535532263058PostEntity:
+  1535975300942PostEntity:
     type: object
     properties:
       name:
@@ -1015,7 +1015,7 @@ definitions:
         description: ''
     required:
       - name
-  1535532263472PostEntity:
+  1535975301397PostEntity:
     type: object
     properties:
       email:
@@ -1027,7 +1027,7 @@ definitions:
     required:
       - email
       - password
-  1535532263994PostEntity:
+  1535975302081PostEntity:
     type: object
     properties:
       email:
@@ -1035,7 +1035,7 @@ definitions:
         description: ''
     required:
       - email
-  1535532263994PutEntity:
+  1535975302081PutEntity:
     type: object
     properties:
       email:
@@ -1051,7 +1051,7 @@ definitions:
       - email
       - reset_token
       - new_password
-  1535532263995PostEntity:
+  1535975302082PostEntity:
     type: object
     properties:
       name:
@@ -1067,7 +1067,7 @@ definitions:
       - name
       - email
       - password
-  1535532263997PostEntity:
+  1535975302084PostEntity:
     type: object
     properties:
       phone:
@@ -1079,7 +1079,7 @@ definitions:
     required:
       - phone
       - otp
-  1535532264045PostEntity:
+  1535975302123PostEntity:
     type: object
     properties:
       UUID:
@@ -1091,7 +1091,7 @@ definitions:
     required:
       - UUID
       - user_id
-  1535532264474PostEntity:
+  1535975302483PostEntity:
     type: object
     properties:
       to:
@@ -1106,11 +1106,15 @@ definitions:
       private_key:
         type: string
         description: ''
+      user_id:
+        type: string
+        description: ''
     required:
       - to
       - value
       - gas
-  1535532264477PostEntity:
+      - user_id
+  1535975302486PostEntity:
     type: object
     properties:
       encrypted_key:
@@ -1122,7 +1126,7 @@ definitions:
     required:
       - encrypted_key
       - user_id
-  1535532264480PostEntity:
+  1535975302490PostEntity:
     type: object
     properties:
       grant_type:
@@ -1130,7 +1134,7 @@ definitions:
         description: ''
     required:
       - grant_type
-  1535532264482PutEntity:
+  1535975302492PutEntity:
     type: object
     properties:
       enable_otp:
@@ -1146,7 +1150,7 @@ definitions:
       - enable_otp
       - phone
       - user_id
-  1535532264490PostEntity:
+  1535975302502PostEntity:
     type: object
     properties:
       chain:
@@ -1162,7 +1166,7 @@ definitions:
       - chain
       - address
       - name
-  1535532264492PostEntity:
+  1535975302504PostEntity:
     type: object
     properties:
       user_id:
@@ -1170,7 +1174,7 @@ definitions:
         description: ''
     required:
       - user_id
-  1535532264494PostEntity:
+  1535975302506PostEntity:
     type: object
     properties:
       name:
